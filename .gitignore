@@ -1,0 +1,19 @@
+# Skill Hub — default ignore patterns
+# Local caches
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.DS_Store
+
+# Local DBs
+*.db
+*.sqlite
+*.sqlite3
+
+# OS / editor clutter
+Thumbs.db
+.idea/
+.vscode/
