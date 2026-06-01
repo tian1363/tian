@@ -14,6 +14,7 @@
 ```text
 note/
 ├── cmd/server/main.go
+├── Dockerfile
 ├── internal
 │   ├── config
 │   ├── db
@@ -52,8 +53,21 @@ go run ./cmd/server
 ## 环境变量
 
 - `HTTP_ADDR`：HTTP 监听地址，默认 `:8080`
+- `PORT`：云平台注入端口（如 Railway），未设置 `HTTP_ADDR` 时会自动使用
 - `MYSQL_DSN`：MySQL 连接串，默认
   `root:root@tcp(127.0.0.1:3306)/note?parseTime=true&charset=utf8mb4`
+
+## Railway 部署
+
+1. 在 Railway 创建项目并连接 GitHub 仓库（分支建议 `main`）。
+2. 在同一项目中添加 MySQL 服务。
+3. 在应用服务里设置环境变量：
+   - `MYSQL_DSN`：填你的 MySQL DSN，例如  
+     `root:password@tcp(host:3306)/note?parseTime=true&charset=utf8mb4`
+4. Railway 会自动使用仓库根目录的 `Dockerfile` 构建并启动。
+5. 部署完成后访问：
+   - `/healthz` 检查健康状态
+   - `/` 打开记事本前端
 
 ## API 列表
 
